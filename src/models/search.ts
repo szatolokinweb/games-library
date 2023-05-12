@@ -2,7 +2,7 @@ import { makeObservable } from "mobx";
 
 class Search {
     constructor() {
-        makeObservable(this);
+        makeObservable(this, {});
     }
 }
 
