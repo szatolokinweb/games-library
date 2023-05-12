@@ -1,7 +1,7 @@
 import { makeObservable } from "mobx";
 
 class Search {
-    constructor() {
+    constructor(searchParams: URLSearchParams) {
         makeObservable(this, {});
     }
 }
