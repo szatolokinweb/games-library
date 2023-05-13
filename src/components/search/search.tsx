@@ -12,7 +12,7 @@ const Search: React.FC = observer(() => {
         []
     );
 
-    return <Filter />;
+    return <Filter searchModel={searchModel} />;
 });
 
 export { Search };

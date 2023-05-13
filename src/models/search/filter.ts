@@ -56,7 +56,7 @@ const getSearchParamsFromFilter = ({
     }
 
     if (ordering) {
-        append("isInverted", String(isInverted));
+        append("ordering", String(ordering));
     }
 
     return searchParams;

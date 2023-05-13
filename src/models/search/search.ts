@@ -23,7 +23,9 @@ class Search {
         this.filter = getFilterFromSearchParams(params.searchParams);
 
         observe(this.filter, () => {
-            params.setSearchParams(getSearchParamsFromFilter(this.filter));
+            params.setSearchParams(getSearchParamsFromFilter(this.filter), {
+                replace: true,
+            });
         });
     }
 
