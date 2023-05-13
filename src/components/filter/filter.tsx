@@ -4,7 +4,7 @@ import { Input, Select, Checkbox } from "antd";
 
 const Filter: React.FC = () => {
     return (
-        <div className="filter">
+        <div className="filter island">
             <Input className="filter__title" />
             <Select />
             <Select />

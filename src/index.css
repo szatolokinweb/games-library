@@ -1,3 +1,11 @@
+:root {
+    --gap: 16px;
+    --small-gap: 8px;
+
+    --background-color: whitesmoke;
+    --island-color: white;
+}
+
 *,
 *::before,
 *::after {
@@ -8,4 +16,11 @@
 
 body {
     font-family: sans-serif;
+    background: var(--background-color);
+}
+
+.island {
+    background: var(--island-color);
+    border-radius: var(--gap);
+    padding: var(--gap);
 }
