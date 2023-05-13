@@ -1,4 +1,4 @@
-import { SelectOption } from "../../common-utils";
+import type { SelectOption } from "../../utils/select";
 import { PageResponse, fetchFromApi } from "../utils";
 
 interface Platform {

@@ -1,5 +1,5 @@
 import * as config from "../config";
-import { SEARCH_PARAMS_SYMBOL, concatSearchParams } from "../common-utils";
+import { SEARCH_PARAMS_SYMBOL, concatSearchParams } from "../utils/common";
 
 interface PageResponse<T> {
     next: string | null;

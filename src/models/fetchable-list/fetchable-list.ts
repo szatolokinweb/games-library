@@ -1,6 +1,6 @@
 import { makeObservable, observable, action, runInAction } from "mobx";
 import { PageResponse } from "../../api/utils";
-import { DEFAULT_PAGE_SIZE, transformValueToError } from "../../common-utils";
+import { DEFAULT_PAGE_SIZE, transformValueToError } from "../../utils/common";
 
 type FetchPage<T> = (
     pageSearchParams: URLSearchParams

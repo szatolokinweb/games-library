@@ -1,4 +1,4 @@
-import { checkArraysEqual } from "../../common-utils";
+import { checkArraysEqual } from "../../utils/common";
 import { Data as FilterData } from "../filter-data/filter-data";
 
 interface Filter {

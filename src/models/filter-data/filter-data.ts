@@ -1,5 +1,5 @@
 import { makeObservable, observable, action, runInAction } from "mobx";
-import { transformValueToError } from "../../common-utils";
+import { transformValueToError } from "../../utils/common";
 import { Genre, fetchGenres } from "../../api/data/genres";
 import { Platform, fetchPlatforms } from "../../api/data/platforms";
 import { Store, fetchStores } from "../../api/data/stores";
