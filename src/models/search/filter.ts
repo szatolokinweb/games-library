@@ -1,3 +1,5 @@
+import { checkArraysEqual } from "../../common-utils";
+
 interface Filter {
     title: string;
     genres: string[];
@@ -8,6 +10,15 @@ interface Filter {
 }
 
 const SEPARATOR = ",";
+
+const INITIAL_FILTER: Filter = {
+    title: "",
+    genres: [],
+    platforms: [],
+    stores: [],
+    isInverted: false,
+    ordering: undefined,
+};
 
 const getFilterFromSearchParams = (searchParams: URLSearchParams): Filter => {
     const get = (key: keyof Filter) => searchParams.get(key);
@@ -62,5 +73,18 @@ const getSearchParamsFromFilter = ({
     return searchParams;
 };
 
+const checkFiltersEqual = (filter1: Filter, filter2: Filter): boolean =>
+    filter1.title === filter2.title &&
+    checkArraysEqual(filter1.genres, filter2.genres) &&
+    checkArraysEqual(filter1.platforms, filter2.platforms) &&
+    checkArraysEqual(filter1.stores, filter2.stores) &&
+    filter1.isInverted === filter2.isInverted &&
+    filter1.ordering === filter2.ordering;
+
 export type { Filter };
-export { getFilterFromSearchParams, getSearchParamsFromFilter };
+export {
+    INITIAL_FILTER,
+    getFilterFromSearchParams,
+    getSearchParamsFromFilter,
+    checkFiltersEqual,
+};

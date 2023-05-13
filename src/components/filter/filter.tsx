@@ -1,6 +1,6 @@
 import "./filter.css";
 
-import { Input, Select, Checkbox } from "antd";
+import { Input, Select, Checkbox, Button } from "antd";
 import { Search as SearchModel } from "../../models/search/search";
 
 interface Props {
@@ -74,6 +74,15 @@ const Filter: React.FC<Props> = ({ searchModel }) => {
             >
                 Invert
             </Checkbox>
+            <Button
+                className="filter__reset"
+                type="primary"
+                danger
+                disabled={searchModel.isInitialFilter}
+                onClick={() => searchModel.resetFilter()}
+            >
+                Reset
+            </Button>
         </div>
     );
 };

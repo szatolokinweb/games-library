@@ -17,3 +17,8 @@
     align-self: center;
     justify-self: start;
 }
+
+.filter__reset {
+    grid-column: 4 / span 1;
+    justify-self: end;
+}

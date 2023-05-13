@@ -22,4 +22,13 @@ const concatSearchParams = (
         )
     );
 
-export { SEARCH_PARAMS_SYMBOL, transformValueToError, concatSearchParams };
+const checkArraysEqual = (arr1: string[], arr2: string[]): boolean =>
+    arr1.length === arr2.length &&
+    arr1.every((value, index) => value === arr2[index]);
+
+export {
+    SEARCH_PARAMS_SYMBOL,
+    transformValueToError,
+    concatSearchParams,
+    checkArraysEqual,
+};

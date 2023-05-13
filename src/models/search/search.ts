@@ -1,7 +1,9 @@
-import { makeObservable, observable, action, observe } from "mobx";
+import { makeObservable, observable, action, observe, computed } from "mobx";
 import type { useSearchParams } from "react-router-dom";
 import {
     Filter,
+    INITIAL_FILTER,
+    checkFiltersEqual,
     getFilterFromSearchParams,
     getSearchParamsFromFilter,
 } from "./filter";
@@ -20,7 +22,9 @@ class Search {
     }) {
         makeObservable(this, {
             filter: observable,
+            isInitialFilter: computed,
             setFilter: action,
+            resetFilter: action,
         });
 
         this.filter = getFilterFromSearchParams(params.searchParams);
@@ -36,8 +40,16 @@ class Search {
         this.filterDataModel.load();
     }
 
+    get isInitialFilter(): boolean {
+        return checkFiltersEqual(this.filter, INITIAL_FILTER);
+    }
+
     setFilter(filter: Partial<Filter>) {
-        this.filter = Object.assign(this.filter, filter);
+        Object.assign(this.filter, filter);
+    }
+
+    resetFilter() {
+        Object.assign(this.filter, INITIAL_FILTER);
     }
 }
 
