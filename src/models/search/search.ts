@@ -13,7 +13,11 @@ import {
     concatSearchParams,
 } from "../../utils/search-params";
 import { FetchableList } from "../fetchable-list/fetchable-list";
-import { Game, fetchGamesPage } from "../../api/data/games";
+import {
+    Game,
+    fetchGamesPage,
+    getSearchParamsFromFilter as getGamesSearchParamsFromFilter,
+} from "../../api/data/games";
 
 class Search {
     filter: Filter;
@@ -46,7 +50,12 @@ class Search {
                 });
 
                 this.games = new FetchableList((pageSearchParams) =>
-                    fetchGamesPage(concatSearchParams([pageSearchParams]))
+                    fetchGamesPage(
+                        concatSearchParams([
+                            pageSearchParams,
+                            getGamesSearchParamsFromFilter(filter),
+                        ])
+                    )
                 );
             }
         );

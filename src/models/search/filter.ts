@@ -102,6 +102,7 @@ const validateFilter = (
 export type { Filter };
 export {
     INITIAL_FILTER,
+    SEPARATOR,
     getFilterFromSearchParams,
     getSearchParamsFromFilter,
     checkFiltersEqual,
