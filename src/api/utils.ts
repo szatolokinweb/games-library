@@ -1,6 +1,11 @@
 import * as config from "../config";
 import { SEARCH_PARAMS_SYMBOL, concatSearchParams } from "../common-utils";
 
+interface PageResponse<T> {
+    next: string | null;
+    results: T[];
+}
+
 const BASE_SEARCH_PARAMS = new URLSearchParams({
     key: config.API_KEY,
 });
@@ -35,4 +40,5 @@ const fetchFromApi = async <T>(
     return json;
 };
 
+export type { PageResponse };
 export { fetchFromApi };

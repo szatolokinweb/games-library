@@ -35,7 +35,12 @@ const Filter: React.FC<Props> = ({ searchModel }) => {
             <Select
                 mode="multiple"
                 allowClear
-                options={FAKE_OPTIONS}
+                options={
+                    searchModel.filterDataModel.data?.genres.map((genre) => ({
+                        value: String(genre.id),
+                        label: genre.name,
+                    })) ?? []
+                }
                 value={searchModel.filter.genres}
                 onChange={(genres) => searchModel.setFilter({ genres })}
             />
