@@ -1,9 +1,3 @@
-import type { useSearchParams } from "react-router-dom";
-
-type SetURLSearchParams = ReturnType<typeof useSearchParams>[1];
-
-const SEARCH_PARAMS_SYMBOL = "?";
-
 const DEFAULT_PAGE_SIZE = 5;
 
 const transformValueToError = (value: unknown): Error => {
@@ -14,29 +8,8 @@ const transformValueToError = (value: unknown): Error => {
     return new Error(String(value));
 };
 
-const concatSearchParams = (
-    searchParamsList: (URLSearchParams | undefined)[]
-): URLSearchParams =>
-    new URLSearchParams(
-        searchParamsList.reduce(
-            (acc, searchParams) =>
-                Object.assign(
-                    acc,
-                    searchParams && Object.fromEntries(searchParams)
-                ),
-            {}
-        )
-    );
-
 const checkArraysEqual = (arr1: string[], arr2: string[]): boolean =>
     arr1.length === arr2.length &&
     arr1.every((value, index) => value === arr2[index]);
 
-export type { SetURLSearchParams };
-export {
-    SEARCH_PARAMS_SYMBOL,
-    DEFAULT_PAGE_SIZE,
-    transformValueToError,
-    concatSearchParams,
-    checkArraysEqual,
-};
+export { DEFAULT_PAGE_SIZE, transformValueToError, checkArraysEqual };

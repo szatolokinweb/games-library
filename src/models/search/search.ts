@@ -8,7 +8,7 @@ import {
     validateFilter,
 } from "./filter";
 import { FilterData as FilterDataModel } from "../filter-data/filter-data";
-import type { SetURLSearchParams } from "../../utils/common";
+import type { SetURLSearchParams } from "../../utils/search-params";
 
 class Search {
     filter: Filter;
