@@ -18,9 +18,15 @@ const Games: React.FC<Props> = observer((props) => {
         }
 
         return (
-            <ul>
+            <ul className="games__list">
                 {games.list.map((game) => (
-                    <li key={game.id}>{game.name}</li>
+                    <li key={game.id}>
+                        <img
+                            className="games__image"
+                            src={game.background_image}
+                        />
+                        <h2>{game.name}</h2>
+                    </li>
                 ))}
             </ul>
         );
