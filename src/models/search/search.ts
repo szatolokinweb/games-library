@@ -1,12 +1,4 @@
-import {
-    makeObservable,
-    observable,
-    action,
-    observe,
-    computed,
-    reaction,
-} from "mobx";
-import type { useSearchParams } from "react-router-dom";
+import { makeObservable, observable, action, computed, reaction } from "mobx";
 import {
     Filter,
     INITIAL_FILTER,
@@ -16,8 +8,7 @@ import {
     validateFilter,
 } from "./filter";
 import { FilterData as FilterDataModel } from "../filter-data/filter-data";
-
-type SetURLSearchParams = ReturnType<typeof useSearchParams>[1];
+import type { SetURLSearchParams } from "../../common-utils";
 
 class Search {
     filter: Filter;
@@ -37,11 +28,14 @@ class Search {
 
         this.filter = getFilterFromSearchParams(params.searchParams);
 
-        observe(this.filter, () => {
-            params.setSearchParams(getSearchParamsFromFilter(this.filter), {
-                replace: true,
-            });
-        });
+        reaction(
+            () => Object.assign({}, this.filter),
+            (filter) => {
+                params.setSearchParams(getSearchParamsFromFilter(filter), {
+                    replace: true,
+                });
+            }
+        );
 
         this.filterDataModel = new FilterDataModel();
 
