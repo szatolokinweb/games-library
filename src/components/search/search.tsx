@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { observer } from "mobx-react";
+import { Button } from "antd";
 import { Search as SearchModel } from "../../models/search/search";
 import { Filter } from "../filter/filter";
 
@@ -15,7 +16,14 @@ const Search: React.FC = observer(() => {
     const filterDataModel = searchModel.filterDataModel;
 
     if (filterDataModel.error) {
-        return <div>error filter data</div>;
+        return (
+            <>
+                <h1>error filter data</h1>
+                <Button onClick={() => searchModel.filterDataModel.load()}>
+                    Retry
+                </Button>
+            </>
+        );
     }
 
     if (filterDataModel.isLoading) {
