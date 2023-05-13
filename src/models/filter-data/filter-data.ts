@@ -2,10 +2,12 @@ import { makeObservable, observable, action, runInAction } from "mobx";
 import { transformValueToError } from "../../common-utils";
 import { Genre, fetchGenres } from "../../api/data/genres";
 import { Platform, fetchPlatforms } from "../../api/data/platforms";
+import { Store, fetchStores } from "../../api/data/stores";
 
 interface Data {
     genres: Genre[];
     platforms: Platform[];
+    stores: Store[];
 }
 
 class FilterData {
@@ -29,16 +31,17 @@ class FilterData {
         this.isLoading = true;
 
         try {
-            const [genres, platforms] = await Promise.all([
+            const [genres, platforms, stores] = await Promise.all([
                 fetchGenres(),
                 fetchPlatforms(),
-                Promise.resolve(),
+                fetchStores(),
             ]);
 
             runInAction(() => {
                 this.data = {
                     genres,
                     platforms,
+                    stores,
                 };
                 this.error = undefined;
             });
