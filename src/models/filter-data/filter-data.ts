@@ -1,14 +1,7 @@
 import { makeObservable, observable, action, runInAction } from "mobx";
+import { transformValueToError } from "../../common-utils";
 
 interface Data {}
-
-const transformValueToError = (value: unknown): Error => {
-    if (value instanceof Error) {
-        return value;
-    }
-
-    return new Error(String(value));
-};
 
 class FilterData {
     data?: Data;
