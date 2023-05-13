@@ -12,6 +12,20 @@ const Search: React.FC = observer(() => {
         []
     );
 
+    const filterDataModel = searchModel.filterDataModel;
+
+    if (filterDataModel.error) {
+        return <div>error filter data</div>;
+    }
+
+    if (filterDataModel.isLoading) {
+        return <div>load filter data</div>;
+    }
+
+    if (!filterDataModel.data) {
+        return <div>no filter data</div>;
+    }
+
     return <Filter searchModel={searchModel} />;
 });
 

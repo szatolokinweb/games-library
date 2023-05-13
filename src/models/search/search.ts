@@ -5,11 +5,14 @@ import {
     getFilterFromSearchParams,
     getSearchParamsFromFilter,
 } from "./filter";
+import { FilterData as FilterDataModel } from "../filter-data/filter-data";
 
 type SetURLSearchParams = ReturnType<typeof useSearchParams>[1];
 
 class Search {
     filter: Filter;
+
+    filterDataModel: FilterDataModel;
 
     constructor(params: {
         searchParams: URLSearchParams;
@@ -27,6 +30,10 @@ class Search {
                 replace: true,
             });
         });
+
+        this.filterDataModel = new FilterDataModel();
+
+        this.filterDataModel.load();
     }
 
     setFilter(filter: Partial<Filter>) {
