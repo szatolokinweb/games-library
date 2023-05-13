@@ -70,6 +70,7 @@ const Filter: React.FC<Props> = ({ searchModel }) => {
             <Checkbox
                 className="filter__invert"
                 checked={searchModel.filter.isInverted}
+                disabled={!searchModel.filter.ordering}
                 onChange={(event) =>
                     searchModel.setFilter({ isInverted: event.target.checked })
                 }
