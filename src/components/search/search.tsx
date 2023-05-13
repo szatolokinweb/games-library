@@ -7,7 +7,10 @@ import { Search as SearchModel } from "../../models/search/search";
 const Search: React.FC = observer(() => {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const searchModel = useMemo(() => new SearchModel(searchParams), []);
+    const searchModel = useMemo(
+        () => new SearchModel({ searchParams, setSearchParams }),
+        []
+    );
 
     return (
         <Input

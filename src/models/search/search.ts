@@ -1,16 +1,30 @@
-import { makeObservable, observable, action } from "mobx";
-import { Filter, getFilterFromSearchParams } from "./filter";
+import { makeObservable, observable, action, observe } from "mobx";
+import type { useSearchParams } from "react-router-dom";
+import {
+    Filter,
+    getFilterFromSearchParams,
+    getSearchParamsFromFilter,
+} from "./filter";
+
+type SetURLSearchParams = ReturnType<typeof useSearchParams>[1];
 
 class Search {
     filter: Filter;
 
-    constructor(searchParams: URLSearchParams) {
+    constructor(params: {
+        searchParams: URLSearchParams;
+        setSearchParams: SetURLSearchParams;
+    }) {
         makeObservable(this, {
             filter: observable,
             setFilter: action,
         });
 
-        this.filter = getFilterFromSearchParams(searchParams);
+        this.filter = getFilterFromSearchParams(params.searchParams);
+
+        observe(this.filter, () => {
+            params.setSearchParams(getSearchParamsFromFilter(this.filter));
+        });
     }
 
     setFilter(filter: Partial<Filter>) {

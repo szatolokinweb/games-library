@@ -22,5 +22,45 @@ const getFilterFromSearchParams = (searchParams: URLSearchParams): Filter => {
     };
 };
 
+const getSearchParamsFromFilter = ({
+    title,
+    genres,
+    platforms,
+    stores,
+    isInverted,
+    ordering,
+}: Filter): URLSearchParams => {
+    const searchParams = new URLSearchParams();
+
+    const append = (key: keyof Filter, value: string) =>
+        searchParams.append(key, value);
+
+    if (title) {
+        append("title", title);
+    }
+
+    if (genres.length > 0) {
+        append("genres", genres.join(SEPARATOR));
+    }
+
+    if (platforms.length > 0) {
+        append("platforms", platforms.join(SEPARATOR));
+    }
+
+    if (stores.length > 0) {
+        append("stores", stores.join(SEPARATOR));
+    }
+
+    if (isInverted) {
+        append("isInverted", String(isInverted));
+    }
+
+    if (ordering) {
+        append("isInverted", String(isInverted));
+    }
+
+    return searchParams;
+};
+
 export type { Filter };
-export { getFilterFromSearchParams };
+export { getFilterFromSearchParams, getSearchParamsFromFilter };
