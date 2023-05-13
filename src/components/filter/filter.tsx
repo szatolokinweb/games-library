@@ -10,7 +10,7 @@ interface Props {
     searchModel: SearchModel;
 }
 
-const FAKE_OPTIONS = [
+const ORDERING_OPTIONS = [
     {
         value: "1",
         label: "qwe",
@@ -72,7 +72,7 @@ const Filter: React.FC<Props> = ({ searchModel }) => {
             <Select
                 className="filter__ordering"
                 allowClear
-                options={FAKE_OPTIONS}
+                options={ORDERING_OPTIONS}
                 value={searchModel.filter.ordering}
                 onChange={(ordering) => searchModel.setFilter({ ordering })}
             />

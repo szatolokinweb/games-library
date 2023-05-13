@@ -10,6 +10,8 @@ type SetURLSearchParams = ReturnType<typeof useSearchParams>[1];
 
 const SEARCH_PARAMS_SYMBOL = "?";
 
+const DEFAULT_PAGE_SIZE = 5;
+
 const transformValueToError = (value: unknown): Error => {
     if (value instanceof Error) {
         return value;
@@ -39,6 +41,7 @@ const checkArraysEqual = (arr1: string[], arr2: string[]): boolean =>
 export type { SelectOption, SetURLSearchParams };
 export {
     SEARCH_PARAMS_SYMBOL,
+    DEFAULT_PAGE_SIZE,
     transformValueToError,
     concatSearchParams,
     checkArraysEqual,
