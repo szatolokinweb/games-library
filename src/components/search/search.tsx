@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Input } from "antd";
 import { observer } from "mobx-react";
 import { Search as SearchModel } from "../../models/search/search";
+import { Filter } from "../filter/filter";
 
 const Search: React.FC = observer(() => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -12,12 +12,7 @@ const Search: React.FC = observer(() => {
         []
     );
 
-    return (
-        <Input
-            value={searchModel.filter.title}
-            onChange={(e) => searchModel.setFilter({ title: e.target.value })}
-        />
-    );
+    return <Filter />;
 });
 
 export { Search };

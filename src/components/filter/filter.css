@@ -1,0 +1,19 @@
+.filter {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.filter__title {
+    grid-column: 1 / span 4;
+}
+
+.filter__ordering {
+    grid-row: 3 / span 1;
+}
+
+.filter__invert {
+    grid-column: 2 / span 1;
+    align-self: center;
+    justify-self: start;
+}
