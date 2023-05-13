@@ -1,5 +1,3 @@
-const DEFAULT_PAGE_SIZE = 5;
-
 const transformValueToError = (value: unknown): Error => {
     if (value instanceof Error) {
         return value;
@@ -12,4 +10,4 @@ const checkArraysEqual = (arr1: string[], arr2: string[]): boolean =>
     arr1.length === arr2.length &&
     arr1.every((value, index) => value === arr2[index]);
 
-export { DEFAULT_PAGE_SIZE, transformValueToError, checkArraysEqual };
+export { transformValueToError, checkArraysEqual };

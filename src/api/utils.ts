@@ -13,6 +13,8 @@ const BASE_SEARCH_PARAMS = new URLSearchParams({
     key: config.API_KEY,
 });
 
+const DEFAULT_PAGE_SIZE = 5;
+
 const formatApiUrl = (
     path?: string,
     searchParams?: URLSearchParams
@@ -44,4 +46,4 @@ const fetchFromApi = async <T>(
 };
 
 export type { PageResponse };
-export { fetchFromApi };
+export { DEFAULT_PAGE_SIZE, fetchFromApi };
