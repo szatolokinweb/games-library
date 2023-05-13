@@ -24,3 +24,7 @@ body {
     border-radius: var(--gap);
     padding: var(--gap);
 }
+
+ul {
+    list-style: none;
+}

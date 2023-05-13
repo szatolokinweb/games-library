@@ -8,12 +8,19 @@ import {
     validateFilter,
 } from "./filter";
 import { FilterData as FilterDataModel } from "../filter-data/filter-data";
-import type { SetURLSearchParams } from "../../utils/search-params";
+import {
+    type SetURLSearchParams,
+    concatSearchParams,
+} from "../../utils/search-params";
+import { FetchableList } from "../fetchable-list/fetchable-list";
+import { Game, fetchGamesPage } from "../../api/data/games";
 
 class Search {
     filter: Filter;
 
     filterDataModel: FilterDataModel;
+
+    games?: FetchableList<Game>;
 
     constructor(params: {
         searchParams: URLSearchParams;
@@ -21,6 +28,7 @@ class Search {
     }) {
         makeObservable(this, {
             filter: observable,
+            games: observable,
             isInitialFilter: computed,
             setFilter: action,
             resetFilter: action,
@@ -31,9 +39,26 @@ class Search {
         reaction(
             () => Object.assign({}, this.filter),
             (filter) => {
+                console.log("update filter");
+
                 params.setSearchParams(getSearchParamsFromFilter(filter), {
                     replace: true,
                 });
+
+                this.games = new FetchableList((pageSearchParams) =>
+                    fetchGamesPage(concatSearchParams([pageSearchParams]))
+                );
+            }
+        );
+
+        reaction(
+            () => this.games,
+            (games) => {
+                console.log("update games");
+
+                if (games) {
+                    games.fetchNextPage();
+                }
             }
         );
 
@@ -44,6 +69,8 @@ class Search {
         reaction(
             () => this.filterDataModel.data,
             (filterData) => {
+                console.log("load filter data");
+
                 if (filterData) {
                     this.setFilter(validateFilter(this.filter, filterData));
                 }

@@ -1,0 +1,7 @@
+.search {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--gap);
+    display: grid;
+    gap: var(--gap);
+}
