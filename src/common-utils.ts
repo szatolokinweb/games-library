@@ -1,3 +1,10 @@
+import type { Select } from "antd";
+
+type SelectOption = Exclude<
+    Parameters<typeof Select>[0]["options"],
+    undefined
+>[number];
+
 const SEARCH_PARAMS_SYMBOL = "?";
 
 const transformValueToError = (value: unknown): Error => {
@@ -26,6 +33,7 @@ const checkArraysEqual = (arr1: string[], arr2: string[]): boolean =>
     arr1.length === arr2.length &&
     arr1.every((value, index) => value === arr2[index]);
 
+export type { SelectOption };
 export {
     SEARCH_PARAMS_SYMBOL,
     transformValueToError,

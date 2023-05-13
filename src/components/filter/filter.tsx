@@ -2,6 +2,8 @@ import "./filter.css";
 
 import { Input, Select, Checkbox, Button } from "antd";
 import { Search as SearchModel } from "../../models/search/search";
+import { convertGenreToSelectOption } from "../../api/data/genres";
+import { convertPlatformToSelectOption } from "../../api/data/platforms";
 
 interface Props {
     searchModel: SearchModel;
@@ -36,10 +38,9 @@ const Filter: React.FC<Props> = ({ searchModel }) => {
                 mode="multiple"
                 allowClear
                 options={
-                    searchModel.filterDataModel.data?.genres.map((genre) => ({
-                        value: String(genre.id),
-                        label: genre.name,
-                    })) ?? []
+                    searchModel.filterDataModel.data?.genres.map(
+                        convertGenreToSelectOption
+                    ) ?? []
                 }
                 value={searchModel.filter.genres}
                 onChange={(genres) => searchModel.setFilter({ genres })}
@@ -47,7 +48,11 @@ const Filter: React.FC<Props> = ({ searchModel }) => {
             <Select
                 mode="multiple"
                 allowClear
-                options={FAKE_OPTIONS}
+                options={
+                    searchModel.filterDataModel.data?.platforms.map(
+                        convertPlatformToSelectOption
+                    ) ?? []
+                }
                 value={searchModel.filter.platforms}
                 onChange={(platforms) => searchModel.setFilter({ platforms })}
             />

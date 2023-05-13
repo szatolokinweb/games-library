@@ -1,3 +1,4 @@
+import { SelectOption } from "../../common-utils";
 import { PageResponse, fetchFromApi } from "../utils";
 
 interface Genre {
@@ -12,5 +13,10 @@ const fetchGenres = (): Promise<Genre[]> =>
         (response) => response.results
     );
 
+const convertGenreToSelectOption = (genre: Genre): SelectOption => ({
+    value: String(genre.id),
+    label: genre.name,
+});
+
 export type { Genre };
-export { fetchGenres };
+export { fetchGenres, convertGenreToSelectOption };
