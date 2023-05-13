@@ -1,4 +1,11 @@
-import { makeObservable, observable, action, observe, computed } from "mobx";
+import {
+    makeObservable,
+    observable,
+    action,
+    observe,
+    computed,
+    reaction,
+} from "mobx";
 import type { useSearchParams } from "react-router-dom";
 import {
     Filter,
@@ -6,6 +13,7 @@ import {
     checkFiltersEqual,
     getFilterFromSearchParams,
     getSearchParamsFromFilter,
+    validateFilter,
 } from "./filter";
 import { FilterData as FilterDataModel } from "../filter-data/filter-data";
 
@@ -38,6 +46,15 @@ class Search {
         this.filterDataModel = new FilterDataModel();
 
         this.filterDataModel.load();
+
+        reaction(
+            () => this.filterDataModel.data,
+            (filterData) => {
+                if (filterData) {
+                    this.setFilter(validateFilter(this.filter, filterData));
+                }
+            }
+        );
     }
 
     get isInitialFilter(): boolean {

@@ -53,4 +53,5 @@ class FilterData {
     }
 }
 
+export type { Data };
 export { FilterData };

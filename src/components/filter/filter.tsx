@@ -29,6 +29,7 @@ const Filter: React.FC<Props> = ({ searchModel }) => {
     return (
         <div className="filter island">
             <Input
+                allowClear
                 className="filter__title"
                 value={searchModel.filter.title}
                 onChange={(event) =>

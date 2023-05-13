@@ -1,4 +1,5 @@
 import { checkArraysEqual } from "../../common-utils";
+import { Data as FilterData } from "../filter-data/filter-data";
 
 interface Filter {
     title: string;
@@ -81,10 +82,28 @@ const checkFiltersEqual = (filter1: Filter, filter2: Filter): boolean =>
     filter1.isInverted === filter2.isInverted &&
     filter1.ordering === filter2.ordering;
 
+const validateFilter = (
+    filter: Filter,
+    filterData: FilterData
+): Partial<Filter> => ({
+    genres: filter.genres.filter((genreId) =>
+        filterData.genres.find((genre) => String(genre.id) === genreId)
+    ),
+    platforms: filter.platforms.filter((platformId) =>
+        filterData.platforms.find(
+            (platform) => String(platform.id) === platformId
+        )
+    ),
+    stores: filter.stores.filter((storeId) =>
+        filterData.stores.find((store) => String(store.id) === storeId)
+    ),
+});
+
 export type { Filter };
 export {
     INITIAL_FILTER,
     getFilterFromSearchParams,
     getSearchParamsFromFilter,
     checkFiltersEqual,
+    validateFilter,
 };
