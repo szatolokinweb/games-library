@@ -1,4 +1,5 @@
 .rating {
     display: flex;
     gap: var(--xs-gap);
+    color: var(--rating-color);
 }

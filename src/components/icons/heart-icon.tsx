@@ -1,7 +1,7 @@
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { OuterProps, Icon } from "./icon";
 
-const Heart: React.FC<OuterProps> = (props) => (
+const HeartIcon: React.FC<OuterProps> = (props) => (
     <Icon
         {...props}
         filledComponent={HeartFilled}
@@ -9,4 +9,4 @@ const Heart: React.FC<OuterProps> = (props) => (
     />
 );
 
-export { Heart };
+export { HeartIcon };

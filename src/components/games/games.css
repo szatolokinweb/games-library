@@ -3,13 +3,14 @@
     gap: var(--gap);
 }
 
-.games__list {
+.games__row {
     display: grid;
     gap: var(--s-gap);
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
-.games__image {
-    display: block;
-    max-width: 100%;
+.games__column {
+    display: grid;
+    gap: var(--s-gap);
+    align-content: start;
 }

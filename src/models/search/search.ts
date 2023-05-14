@@ -18,6 +18,7 @@ import {
     fetchGamesPage,
     getSearchParamsFromFilter as getGamesSearchParamsFromFilter,
 } from "../../api/data/games";
+import { tryLoadImages } from "../../utils/try-load-images";
 
 class Search {
     filter: Filter;
@@ -49,14 +50,22 @@ class Search {
                     replace: true,
                 });
 
-                this.games = new FetchableList((pageSearchParams) =>
-                    fetchGamesPage(
+                this.games = new FetchableList(async (pageSearchParams) => {
+                    const pageResponse = await fetchGamesPage(
                         concatSearchParams([
                             pageSearchParams,
                             getGamesSearchParamsFromFilter(filter),
                         ])
-                    )
-                );
+                    );
+
+                    await tryLoadImages(
+                        pageResponse.results.map(
+                            (game) => game.background_image
+                        )
+                    );
+
+                    return pageResponse;
+                });
             }
         );
 

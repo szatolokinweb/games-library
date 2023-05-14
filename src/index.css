@@ -5,6 +5,8 @@
 
     --background-color: rgb(202, 202, 202);
     --island-color: white;
+    --favourite-color: red;
+    --rating-color: orange;
 }
 
 *,
@@ -26,6 +28,7 @@ body {
     padding: var(--gap);
 }
 
-ul {
-    list-style: none;
+a {
+    color: inherit;
+    text-decoration: none;
 }

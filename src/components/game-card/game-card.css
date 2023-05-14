@@ -1,0 +1,30 @@
+.game-card {
+    display: grid;
+    gap: var(--s-gap);
+    align-content: start;
+}
+
+.game-card__image {
+    width: 100%;
+    display: block;
+    border-radius: var(--s-gap);
+}
+
+.game-card__title {
+    font-size: 18px;
+}
+
+.game-card__released {
+    font-size: 14px;
+}
+
+.game-card__row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.game-card__favourite {
+    cursor: pointer;
+    color: var(--favourite-color);
+}

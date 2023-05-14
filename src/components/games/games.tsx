@@ -4,10 +4,13 @@ import React from "react";
 import { Button } from "antd";
 import { observer } from "mobx-react";
 import { Search as SearchModel } from "../../models/search/search";
+import { GameCard } from "../game-card/game-card";
 
 interface Props {
     searchModel: SearchModel;
 }
+
+const COLUMNS_COUNT: number = 4;
 
 const Games: React.FC<Props> = observer((props) => {
     const games = props.searchModel.games;
@@ -17,19 +20,26 @@ const Games: React.FC<Props> = observer((props) => {
             return null;
         }
 
-        return (
-            <ul className="games__list">
-                {games.list.map((game) => (
-                    <li key={game.id}>
-                        <img
-                            className="games__image"
-                            src={game.background_image}
-                        />
-                        <h2>{game.name}</h2>
-                    </li>
-                ))}
-            </ul>
-        );
+        const list = games.list;
+
+        const columns = [];
+
+        for (let columnIndex = 0; columnIndex < COLUMNS_COUNT; columnIndex++) {
+            columns.push(
+                <div key={columnIndex} className="games__column">
+                    {list
+                        .filter(
+                            (_, gameIndex) =>
+                                gameIndex % COLUMNS_COUNT === columnIndex
+                        )
+                        .map((game) => (
+                            <GameCard key={game.id} data={game} />
+                        ))}
+                </div>
+            );
+        }
+
+        return <div className="games__row">{columns}</div>;
     };
 
     const renderButtonText = (): string | null => {
@@ -74,7 +84,7 @@ const Games: React.FC<Props> = observer((props) => {
     };
 
     return (
-        <div className="games island">
+        <div className="games">
             {renderList()}
             {renderState()}
         </div>
