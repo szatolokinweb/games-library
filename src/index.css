@@ -1,6 +1,7 @@
 :root {
     --gap: 16px;
-    --small-gap: 8px;
+    --s-gap: 8px;
+    --xs-gap: 4px;
 
     --background-color: rgb(202, 202, 202);
     --island-color: white;
