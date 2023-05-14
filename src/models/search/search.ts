@@ -19,6 +19,7 @@ import {
     getSearchParamsFromFilter as getGamesSearchParamsFromFilter,
 } from "../../api/data/games";
 import { tryLoadImages } from "../../utils/try-load-images";
+import { checkIsNotUndefined } from "../../utils/check-is-not-undefined";
 
 class Search {
     filter: Filter;
@@ -59,9 +60,9 @@ class Search {
                     );
 
                     await tryLoadImages(
-                        pageResponse.results.map(
-                            (game) => game.background_image
-                        )
+                        pageResponse.results
+                            .map((game) => game.background_image)
+                            .filter(checkIsNotUndefined)
                     );
 
                     return pageResponse;

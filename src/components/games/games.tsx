@@ -33,7 +33,11 @@ const Games: React.FC<Props> = observer((props) => {
                                 gameIndex % COLUMNS_COUNT === columnIndex
                         )
                         .map((game) => (
-                            <GameCard key={game.id} data={game} />
+                            <GameCard
+                                key={game.id}
+                                className="games__game-card"
+                                data={game}
+                            />
                         ))}
                 </div>
             );

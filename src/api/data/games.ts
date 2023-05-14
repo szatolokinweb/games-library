@@ -4,9 +4,9 @@ import { PageResponse, fetchFromApi } from "../utils";
 interface Game {
     id: number;
     name: string;
-    background_image: string;
     released: string;
     rating: number;
+    background_image?: string;
 }
 
 type SearchProperty =
