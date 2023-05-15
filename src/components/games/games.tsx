@@ -5,6 +5,8 @@ import { Button } from "antd";
 import { observer } from "mobx-react";
 import { Search as SearchModel } from "../../models/search/search";
 import { GameCard } from "../game-card/game-card";
+import { favourites } from "../../models/favourites/favourites";
+import { checkIsNotUndefined } from "../../utils/check-is-not-undefined";
 
 interface Props {
     searchModel: SearchModel;
@@ -32,13 +34,39 @@ const Games: React.FC<Props> = observer((props) => {
                             (_, gameIndex) =>
                                 gameIndex % COLUMNS_COUNT === columnIndex
                         )
-                        .map((game) => (
-                            <GameCard
-                                key={game.id}
-                                className="games__game-card"
-                                data={game}
-                            />
-                        ))}
+                        .map((game) => {
+                            const isFavourite = checkIsNotUndefined(
+                                favourites.games.find(
+                                    (gameId) => gameId === String(game.id)
+                                )
+                            );
+
+                            return (
+                                <GameCard
+                                    key={game.id}
+                                    className="games__game-card"
+                                    data={game}
+                                    favourite={isFavourite}
+                                    onFavouriteChange={() => {
+                                        if (isFavourite) {
+                                            favourites.setGames(
+                                                favourites.games.filter(
+                                                    (gameId) =>
+                                                        gameId !==
+                                                        String(game.id)
+                                                )
+                                            );
+                                        } else {
+                                            favourites.setGames(
+                                                favourites.games.concat(
+                                                    String(game.id)
+                                                )
+                                            );
+                                        }
+                                    }}
+                                />
+                            );
+                        })}
                 </div>
             );
         }
