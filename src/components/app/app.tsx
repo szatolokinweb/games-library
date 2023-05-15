@@ -1,8 +1,10 @@
+import { observer } from "mobx-react";
+import { favourites } from "../../models/favourites/favourites";
 import "./app.css";
 
 import { Outlet, Link } from "react-router-dom";
 
-const App: React.FC = () => {
+const App: React.FC = observer(() => {
     return (
         <div className="app">
             <div className="island app__header">
@@ -13,7 +15,9 @@ const App: React.FC = () => {
                     <Link to="/">Search</Link>
                 </div>
                 <div>
-                    <Link to="/favourites">Favourites</Link>
+                    <Link to="/favourites">
+                        Favourites ({favourites.games.length})
+                    </Link>
                 </div>
             </div>
             <div>
@@ -21,6 +25,6 @@ const App: React.FC = () => {
             </div>
         </div>
     );
-};
+});
 
 export { App };
