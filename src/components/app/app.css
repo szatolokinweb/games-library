@@ -1,0 +1,19 @@
+.app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--gap);
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: 20% 1fr;
+    align-items: start;
+    align-content: start;
+}
+
+.app__header {
+    grid-column: 1 / span 2;
+}
+
+.app__navigation {
+    position: sticky;
+    top: var(--gap);
+}

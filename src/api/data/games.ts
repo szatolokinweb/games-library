@@ -24,6 +24,8 @@ const fetchGamesPage = (
     searchParams: URLSearchParams
 ): Promise<PageResponse<Game>> => fetchFromApi(PATH, searchParams);
 
+const fetchGame = (id: string): Promise<Game> => fetchFromApi(`/games/${id}`);
+
 const getSearchParamsFromFilter = ({
     title,
     genres,
@@ -65,4 +67,4 @@ const getSearchParamsFromFilter = ({
 };
 
 export type { Game };
-export { fetchGamesPage, getSearchParamsFromFilter };
+export { fetchGamesPage, fetchGame, getSearchParamsFromFilter };

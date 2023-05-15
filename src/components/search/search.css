@@ -1,7 +1,4 @@
 .search {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: var(--gap);
     display: grid;
     gap: var(--gap);
 }

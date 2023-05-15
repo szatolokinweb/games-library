@@ -13,7 +13,7 @@ const BASE_SEARCH_PARAMS = new URLSearchParams({
     key: config.API_KEY,
 });
 
-const DEFAULT_PAGE_SIZE = 5;
+const DEFAULT_PAGE_SIZE = 7;
 
 const formatApiUrl = (
     path?: string,

@@ -32,7 +32,7 @@ class FilterData {
 
         try {
             const [genres, platforms, stores] = await Promise.all([
-                Math.random() < 0.5 ? fetchGenres() : Promise.reject(),
+                fetchGenres(),
                 fetchPlatforms(),
                 fetchStores(),
             ]);
