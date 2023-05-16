@@ -39,8 +39,8 @@ const Navigation: React.FC = observer(() => {
     return (
         <nav className="island">
             <ul className="navigation__list">
-                {NAVIGATION_ITEMS.map((item) => (
-                    <li>
+                {NAVIGATION_ITEMS.map((item, index) => (
+                    <li key={index}>
                         <NavLink
                             className={({ isActive }) =>
                                 classNames("navigation__link", {
