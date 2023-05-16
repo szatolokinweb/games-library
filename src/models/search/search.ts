@@ -45,8 +45,6 @@ class Search {
         reaction(
             () => Object.assign({}, this.filter),
             (filter) => {
-                console.log("update filter");
-
                 params.setSearchParams(getSearchParamsFromFilter(filter), {
                     replace: true,
                 });
@@ -73,8 +71,6 @@ class Search {
         reaction(
             () => this.games,
             (games) => {
-                console.log("update games");
-
                 if (games) {
                     games.fetchNextPage();
                 }
@@ -88,8 +84,6 @@ class Search {
         reaction(
             () => this.filterDataModel.data,
             (filterData) => {
-                console.log("load filter data");
-
                 if (filterData) {
                     this.setFilter(validateFilter(this.filter, filterData));
                 }
