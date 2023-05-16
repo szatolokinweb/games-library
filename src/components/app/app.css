@@ -11,6 +11,8 @@
 
 .app__header {
     grid-column: 1 / span 2;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .app__navigation {

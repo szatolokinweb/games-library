@@ -1,0 +1,17 @@
+.navigation__list {
+    display: grid;
+    gap: var(--s-gap);
+}
+
+.navigation__link {
+    display: flex;
+    gap: var(--s-gap);
+    padding: var(--s-gap);
+    border-radius: var(--s-gap);
+}
+
+.navigation__link.active {
+    font-weight: bold;
+    background: rgb(78, 78, 78);
+    color: white;
+}
